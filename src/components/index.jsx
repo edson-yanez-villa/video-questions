@@ -44,7 +44,6 @@ const QuestionList = () => {
   const handleClose = () => setOpen(false);
 
   const _handleCloseDialog = () => {
-    console.log("close");
     handleClose();
     setQuestionSelected(null);
   };
