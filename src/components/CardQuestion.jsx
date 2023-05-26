@@ -8,7 +8,10 @@ import IconButton from "@mui/joy/IconButton";
 import Link from "@mui/joy/Link";
 import PlayCircle from "@mui/icons-material/PlayCircle";
 
-export default function CardQuestion({ question }) {
+export default function CardQuestion({ question, onEdit }) {
+  const _handleOnEdit = () => {
+    onEdit(question);
+  };
   return (
     <Grid xs display="flex" justifyContent="center" alignItems="center">
       <Card variant="outlined" sx={{ width: 220 }}>
@@ -45,7 +48,7 @@ export default function CardQuestion({ question }) {
           </IconButton>
         </CardOverflow>
         <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
-          <Link href="#multiple-actions" overlay underline="none">
+          <Link href="#" onClick={_handleOnEdit} overlay underline="none">
             {question.question}
           </Link>
         </Typography>

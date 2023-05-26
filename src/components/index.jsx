@@ -1,11 +1,13 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Unstable_Grid2";
 import Button from "@mui/joy/Button";
+import Grid from "@mui/material/Unstable_Grid2";
+import Dialog from "@mui/material/Dialog";
 
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import CardQuestion from "./CardQuestion";
+import QuestionForm from "./QuestionForm";
 
 const listQuestions = [
   {
@@ -34,6 +36,38 @@ const listQuestions = [
 ];
 
 const QuestionList = () => {
+  const [questions, setQuestions] = useState(listQuestions);
+  const [open, setOpen] = useState(false);
+  const [questionSelected, setQuestionSelected] = useState();
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const _handleCloseDialog = () => {
+    console.log("close");
+    handleClose();
+    setQuestionSelected(null);
+  };
+
+  const _handleEditQuestion = (question) => {
+    setQuestionSelected(question);
+    handleOpen();
+  };
+
+  const _handleUpdateQuestion = (question) => {
+    setQuestions((prev) =>
+      prev.map((element) => {
+        if (element._id !== question._id) {
+          return element;
+        }
+        return {
+          ...element,
+          ...question,
+        };
+      })
+    );
+  };
+
   return (
     <>
       <Grid
@@ -52,8 +86,12 @@ const QuestionList = () => {
           <h1>Video Cuestionario</h1>
         </Grid>
         <Grid container spacing={2}>
-          {listQuestions.map((question) => (
-            <CardQuestion key={question._id} question={question} />
+          {questions.map((question) => (
+            <CardQuestion
+              key={question._id}
+              question={question}
+              onEdit={_handleEditQuestion}
+            />
           ))}
         </Grid>
         <Grid
@@ -69,6 +107,13 @@ const QuestionList = () => {
           </Button>
         </Grid>
       </Grid>
+      <Dialog open={open} onClose={_handleCloseDialog}>
+        <QuestionForm
+          question={questionSelected}
+          onClose={_handleCloseDialog}
+          onUpdate={_handleUpdateQuestion}
+        />
+      </Dialog>
     </>
   );
 };
