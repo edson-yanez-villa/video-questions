@@ -13,12 +13,12 @@ const listQuestions = [
   {
     _id: uuidv4(),
     question: "Cual fue tu video favorito durtanEnviarte tu infancia 1?",
-    state: false,
+    state: true,
     video: null,
   },
   {
     question: "Cual fue tu video favorito durtante tu infancia 2?",
-    state: false,
+    state: true,
     video: null,
   },
   {
@@ -30,7 +30,7 @@ const listQuestions = [
   {
     _id: uuidv4(),
     question: "Cual fue tu video favorito durtante tu infancia 4?",
-    state: false,
+    state: true,
     video: null,
   },
 ];

@@ -15,19 +15,27 @@ export default function QuestionForm({ listQuestions, question, onClose }) {
   };
 
   const _handleClickNext = () => {
-    let nextIndex = listQuestions?.indexOf(currentQuestion) + 1;
-    if (nextIndex === listQuestions.length) {
-      nextIndex = 0;
+    let nextQuestion = listQuestions.find((element) => element.state == false);
+    if (!nextQuestion) {
+      let nextIndex = listQuestions?.indexOf(currentQuestion) + 1;
+      if (nextIndex === listQuestions.length) {
+        nextIndex = 0;
+      }
+      nextQuestion = listQuestions[nextIndex];
     }
-    setCurrentQuestion(listQuestions[nextIndex]);
+    setCurrentQuestion(nextQuestion);
   };
 
   const _handleClickBack = () => {
-    let backIndex = listQuestions?.indexOf(currentQuestion) - 1;
-    if (backIndex === -1) {
-      backIndex = listQuestions.length - 1;
+    let backQuestion = listQuestions.find((element) => element.state == false);
+    if (!backQuestion) {
+      let backIndex = listQuestions?.indexOf(currentQuestion) - 1;
+      if (backIndex === -1) {
+        backIndex = listQuestions.length - 1;
+      }
+      backQuestion = listQuestions[backIndex];
     }
-    setCurrentQuestion(listQuestions[backIndex]);
+    setCurrentQuestion(backQuestion);
   };
 
   return (
