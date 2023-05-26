@@ -38,6 +38,10 @@ export default function QuestionForm({ listQuestions, question, onClose }) {
     setCurrentQuestion(backQuestion);
   };
 
+  const _handleClickRec = () => {
+    currentQuestion.state = true;
+  };
+
   return (
     <Card sx={{ width: 500 }}>
       <CardActions
@@ -50,7 +54,9 @@ export default function QuestionForm({ listQuestions, question, onClose }) {
         <Button size="small" onClick={_handleClosed}>
           Volver
         </Button>
-        <Button size="small">Grabar</Button>
+        <Button size="small" onClick={_handleClickRec}>
+          Grabar
+        </Button>
       </CardActions>
       <CardMedia>
         <AspectRatio ratio="1">

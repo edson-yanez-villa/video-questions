@@ -13,12 +13,12 @@ const listQuestions = [
   {
     _id: uuidv4(),
     question: "Cual fue tu video favorito durtanEnviarte tu infancia 1?",
-    state: true,
+    state: false,
     video: null,
   },
   {
     question: "Cual fue tu video favorito durtante tu infancia 2?",
-    state: true,
+    state: false,
     video: null,
   },
   {
@@ -30,7 +30,7 @@ const listQuestions = [
   {
     _id: uuidv4(),
     question: "Cual fue tu video favorito durtante tu infancia 4?",
-    state: true,
+    state: false,
     video: null,
   },
 ];
@@ -43,6 +43,8 @@ const QuestionList = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const enableButton = questions.every((element) => element.state == true);
+  console.log(enableButton);
   const _handleCloseDialog = () => {
     handleClose();
     setQuestionSelected(null);
@@ -101,7 +103,12 @@ const QuestionList = () => {
             alignItems: "flex-end",
           }}
         >
-          <Button disabled color="danger" onClick={function () {}} size="lg">
+          <Button
+            disabled={!enableButton}
+            color="danger"
+            onClick={function () {}}
+            size="lg"
+          >
             Enviar
           </Button>
         </Grid>
