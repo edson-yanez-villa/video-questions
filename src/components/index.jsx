@@ -12,24 +12,24 @@ import QuestionForm from "./QuestionForm";
 const listQuestions = [
   {
     _id: uuidv4(),
-    question: "Cual fue tu video favorito durtante tu infancia?",
+    question: "Cual fue tu video favorito durtanEnviarte tu infancia 1?",
     state: false,
     video: null,
   },
   {
-    question: "Cual fue tu video favorito durtante tu infancia?",
-    state: false,
-    video: null,
-  },
-  {
-    _id: uuidv4(),
-    question: "Cual fue tu video favorito durtante tu infancia?",
+    question: "Cual fue tu video favorito durtante tu infancia 2?",
     state: false,
     video: null,
   },
   {
     _id: uuidv4(),
-    question: "Cual fue tu video favorito durtante tu infancia?",
+    question: "Cual fue tu video favorito durtante tu infancia 3?",
+    state: false,
+    video: null,
+  },
+  {
+    _id: uuidv4(),
+    question: "Cual fue tu video favorito durtante tu infancia 4?",
     state: false,
     video: null,
   },
@@ -108,6 +108,7 @@ const QuestionList = () => {
       </Grid>
       <Dialog open={open} onClose={_handleCloseDialog}>
         <QuestionForm
+          listQuestions={questions}
           question={questionSelected}
           onClose={_handleCloseDialog}
           onUpdate={_handleUpdateQuestion}

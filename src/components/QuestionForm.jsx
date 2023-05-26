@@ -1,35 +1,33 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
 import AspectRatio from "@mui/joy/AspectRatio";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
-export default function QuestionForm({ question, onClose }) {
-  const [expanded, setExpanded] = React.useState(false);
+export default function QuestionForm({ listQuestions, question, onClose }) {
+  const [currentQuestion, setCurrentQuestion] = React.useState(question);
 
   const _handleClosed = () => {
     onClose();
+  };
+
+  const _handleClickNext = () => {
+    let nextIndex = listQuestions?.indexOf(currentQuestion) + 1;
+    if (nextIndex === listQuestions.length) {
+      nextIndex = 0;
+    }
+    setCurrentQuestion(listQuestions[nextIndex]);
+  };
+
+  const _handleClickBack = () => {
+    let backIndex = listQuestions?.indexOf(currentQuestion) - 1;
+    if (backIndex === -1) {
+      backIndex = listQuestions.length - 1;
+    }
+    setCurrentQuestion(listQuestions[backIndex]);
   };
 
   return (
@@ -63,7 +61,7 @@ export default function QuestionForm({ question, onClose }) {
       </CardMedia>
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {question?.question}
+          {currentQuestion?.question}
         </Typography>
       </CardContent>
       <CardActions
@@ -73,8 +71,12 @@ export default function QuestionForm({ question, onClose }) {
           justifyContent: "space-between",
         }}
       >
-        <Button size="small">Atras</Button>
-        <Button size="small">Siguiente</Button>
+        <Button size="small" onClick={_handleClickBack}>
+          Atras
+        </Button>
+        <Button size="small" onClick={_handleClickNext}>
+          Siguiente
+        </Button>
       </CardActions>
     </Card>
   );
