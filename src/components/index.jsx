@@ -39,12 +39,11 @@ const QuestionList = () => {
   const [questions, setQuestions] = useState(listQuestions);
   const [open, setOpen] = useState(false);
   const [questionSelected, setQuestionSelected] = useState();
+  const enableButton = questions.every((element) => element.state == true);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const enableButton = questions.every((element) => element.state == true);
-  console.log(enableButton);
   const _handleCloseDialog = () => {
     handleClose();
     setQuestionSelected(null);
@@ -72,7 +71,7 @@ const QuestionList = () => {
   return (
     <>
       <Grid
-        container
+        container="true"
         sx={{
           display: "flex",
           justifyContent: "center",

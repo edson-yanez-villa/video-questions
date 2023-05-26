@@ -45,7 +45,6 @@ export default function QuestionForm({ listQuestions, question, onClose }) {
   return (
     <Card sx={{ width: 500 }}>
       <CardActions
-        container
         sx={{
           display: "flex",
           justifyContent: "space-between",
@@ -79,7 +78,6 @@ export default function QuestionForm({ listQuestions, question, onClose }) {
         </Typography>
       </CardContent>
       <CardActions
-        container
         sx={{
           display: "flex",
           justifyContent: "space-between",
